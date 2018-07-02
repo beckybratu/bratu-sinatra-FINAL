@@ -1,0 +1,15 @@
+<h1>Newsstand</h1>
+<h2>Welcome, <%= @user.name %></h2>
+<h3>Here are the titles in your subscription:</h3>
+
+<ul>
+<% @titles.each do |title| %>
+ <a href="/titles/<%= title.id %>"><%= title.name %> </a>
+<% end %>
+</ul>
+<br></br>
+
+<a href="/titles/new">Add a new title to your Newsstand</a>
+<br></br>
+<a href="/categories">Categories</a>
+<a href="/logout">Logout</a>

@@ -1,0 +1,20 @@
+<h1>Newsstand</h1>
+<h2>Welcome, <%= @user.name %></h2>
+<h3>Add a new title:</h3>
+
+<form action="/titles" method="POST">
+  <label>Title name:</label>
+  <input name="title[name]" type="text" id="Name">
+<br></br>
+
+  <label>Pick corresponding categories:</label>
+
+  <% @categories.each do |category| %>
+    <input id="<%= category.name %>" type="checkbox" name="categories[]" value="<%= category.id %>">
+  <% end %>
+
+  <br></br>
+
+  <input type="submit" value="Create">
+
+</form>

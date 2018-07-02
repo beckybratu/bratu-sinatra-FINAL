@@ -1,0 +1,18 @@
+<h1>Newsstand</h1>
+<h2>Welcome, <%= @user.name %></h2>
+<h3>Add a new category</h3>
+<form action="/categories" method="POST">
+  <label>Category name:</label>
+  <input name="category[name]" type="text" id="Name"> </br>
+
+  <label>Pick corresponding titles:</label>
+
+  <% Title.all.each do |title| %>
+    <input id="<%= title.name %>" type="checkbox" name="titles[]" value="<%= title.id %>">
+  <% end %>
+
+  <br></br>
+
+  <input type="submit" value="Create">
+
+</form>
