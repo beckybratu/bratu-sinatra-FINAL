@@ -1,0 +1,6 @@
+Title.create!(name: "Vogue")
+Title.create!(name: "W")
+Title.create!(name: "Glamour")
+Title.create!(name:"Vanity Fair")
+Title.create!(name: "Washington Post")
+Title.create!(name: "Golf Digest")

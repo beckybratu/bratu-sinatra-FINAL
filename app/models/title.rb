@@ -1,7 +1,6 @@
 class Title < ActiveRecord::Base
 
-  has_many :categories
-  has_many :title_categories
-  belongs_to :subscription
+  has_many :subscriptions, through: :title_subscriptions
+  has_many :title_subscriptions
 
 end

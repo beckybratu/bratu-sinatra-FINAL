@@ -1,0 +1,16 @@
+<h2><%= @user.name.capitalize %>, pick five titles for your LITE subscription:</h2>
+
+<form action="/show" method="POST">
+
+  <%@titles.each do |title|%>
+      <input type="checkbox" name="user[title][]" value="<%=title%>" id="<%=title%>"><%=title%></input><br>
+  <%end%>
+  <br></br>
+
+  <input type="submit" value="Confirm subscription">
+</form>
+
+
+<a href="/subscriptions/new">Back to Subscriptions</a>
+<br></br>
+<a href="/logout">Logout</a>

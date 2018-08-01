@@ -1,4 +1,6 @@
 require './config/environment'
+require 'sinatra/base'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -17,7 +19,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
       erb :'users/create_user'
     else
-      redirect '/subscriptions'
+      redirect '/titles'
     end
   end
 
@@ -25,7 +27,7 @@ class ApplicationController < Sinatra::Base
     user = User.new(:name => params[:name], :email => params[:email], :password => params[:password])
     if user.save
       session[:user_id]= user.id
-      redirect "/titles"
+      redirect "/subscriptions/new"
     else
       redirect to '/signup'
     end
@@ -33,7 +35,7 @@ class ApplicationController < Sinatra::Base
 
   get "/login" do
     if logged_in?
-       redirect to '/subscriptions'
+       redirect to '/titles'
     else
       erb :login
     end
@@ -43,7 +45,7 @@ class ApplicationController < Sinatra::Base
     user = User.find_by(name: params[:name])
     if user && user.authenticate(params[:password])
   	   session[:user_id] = user.id
-  	   redirect '/subscriptions'
+  	   redirect '/titles'
     else
       redirect '/login'
     end
@@ -58,13 +60,15 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+
+
   helpers do
     def logged_in?
       !!current_user
     end
 
     def current_user
-      User.find(session[:user_id])
+      User.find(session[:user_id]) if session[:user_id]
     end
   end
 

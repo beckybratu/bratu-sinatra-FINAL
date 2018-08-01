@@ -1,0 +1,13 @@
+<h1>Newsstand</h1>
+<h2>Welcome, <%= @user.name.capitalize %></h2>
+<h2>Titles currently in your subscription:</h2>
+
+<ul>
+  <%@user.titles.each do |title|%>
+    <li><%=title%></li><br>
+  <%end%>
+</ul>
+<br></br>
+
+<h4><a href="/titles">Add more titles to your subscription!</a></h4>
+<h4><a href="/logout">Logout</a></h4>

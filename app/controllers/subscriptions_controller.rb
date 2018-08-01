@@ -1,18 +1,56 @@
+require 'sinatra/base'
+require 'rack-flash'
+
 class SubscriptionsController < ApplicationController
 
-  get "/subscriptions" do
+  enable :sessions
+  use Rack::Flash
+
+  # TITLES = ["Vogue", "W", "Glamour", "Vanity Fair", "The New Yorker", "Wired", "GQ", "Conde Nast Traveler",
+  # "Architectural Digest", "Allure", "Brides", "Golf Digest", "Bon Appetit", "Self", "Teen Vogue", "Golf World",
+  # "Epicurious", "Pitchfork", "Ars Technica", "The New York Times", "The Washington Post", "USA Today"].freeze
+
+  get "/subscriptions/new" do
     @user = current_user
-    erb :'/subscriptions/subscriptions'
+    @subscription = Subscription.new(:name => params[:name])
+    @subscription_levels = Subscription.subscription_levels
+    erb :'/subscriptions/new'
   end
 
-  helpers do
-    def logged_in?
-      !!current_user
-    end
+  get "/subscriptions/lite" do
+    @user = current_user
+    @titles = Title.all
+    erb :'/subscriptions/lite'
+  end
 
-    def current_user
-      User.find(session[:user_id])
+  get "/subscriptions/extra" do
+    @user = current_user
+    @titles = Title.all
+    erb :'/subscriptions/extra'
+  end
+
+  get "/subscriptions/everything" do
+    @user = current_user
+    @titles = Title.all
+    erb :'/subscriptions/everything'
+  end
+
+  post '/show' do
+    @user = current_user
+    @titles = Title.all
+    @subscription = @user.subscription_ids
+    if params[:user][:subscription][:titles].length == 5
+      erb :'users/show'
+    elsif (params[:user][:title].length) == "" || (params[:user][:title].length) < 5 || (params[:user][:title].length).between?(6,11)
+      flash[:error] = "Please select five, 12, or more than 12 titles."
+      erb :'subscriptions/new'
+    elsif params[:user][:title].length == 12
+      erb :'users/show'
+    else
+      erb :'users/show'
     end
   end
+
+
 
 end

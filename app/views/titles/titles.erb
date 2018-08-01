@@ -1,15 +1,34 @@
 <h1>Newsstand</h1>
-<h2>Welcome, <%= @user.name %></h2>
-<h3>Here are the titles in your subscription:</h3>
+<h2>Welcome, <%= @user.name.capitalize %></h2>
+<h3>BROWSE OUR TITLES! Here are all the available titles in our collection:</h3>
 
 <ul>
-<% @titles.each do |title| %>
- <a href="/titles/<%= title.id %>"><%= title.name %> </a>
-<% end %>
+  <li><a href="https://www.vogue.com/">Vogue</a></li>
+  <li><a href="https://www.wmagazine.com/">W</a></li>
+  <li><a href="https://www.glamour.com/">Glamour</a></li>
+  <li><a href="https://www.vanityfair.com/">Vanity Fair</a></li>
+  <li><a href="https://www.newyorker.com/">The New Yorker</a></li>
+  <li><a href="https://www.wired.com/">Wired</a></li>
+  <li><a href="https://www.gq.com/">GQ</a></li>
+  <li><a href="https://www.cntraveler.com/">Conde Nast Traveler</a></li>
+  <li><a href="https://www.architecturaldigest.com/">Architectural Digest</a></li>
+  <li><a href="https://www.allure.com/">Allure</a></li>
+  <li><a href="https://www.brides.com/">Brides</a></li>
+  <li><a href="https://www.golfdigest.com/">Golf Digest</a></li>
+  <li><a href="https://www.bonappetit.com/">Bon Appetit</a></li>
+  <li><a href="https://www.self.com/">Self</a></li>
+  <li><a href="https://www.teenvogue.com/">Teen Vogue</a></li>
+  <li><a href="https://www.epicurious.com/">Epicurious</a></li>
+  <li><a href="https://www.pitchfork.com/">Pitchfork</a></li>
+  <li><a href="https://www.arstechnica.com/">Ars Technica</a></li>
+  <li><a href="https://www.nytimes.com/">The New York Times</a></li>
+  <li><a href="https://www.washingtonpost.com/">The Washington Post</a></li>
+  <li><a href="https://www.usatoday.com/">USA Today</a></li>
 </ul>
-<br></br>
 
-<a href="/titles/new">Add a new title to your Newsstand</a>
+
+  <br></br>
+
+<h3><a href="/subscriptions/new">OR, to reap the benefits of membership, SUBSCRIBE! Select a Newsstand subscription level to start reading!</a></h3>
 <br></br>
-<a href="/categories">Categories</a>
 <a href="/logout">Logout</a>
