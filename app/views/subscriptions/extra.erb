@@ -3,7 +3,8 @@
 <form action="/show" method="POST">
 
   <%@titles.each do |title|%>
-      <input type="checkbox" name="user[title][]" value="<%=title%>" id="<%=title%>"><%=title%></input><br>
+      <input type="checkbox" name="title" value="<%=title%>" id="<%=title%>"><%=title.name%></input><br>
+      <%=current_user.subscription.titles << title%>
   <%end%>
   <br></br>
 

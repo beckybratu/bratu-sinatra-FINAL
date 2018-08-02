@@ -1,17 +1,19 @@
 <h1>Newsstand</h1>
 <h2>Welcome, <%=@user.name.capitalize %></h2>
 <h3>Thank you for your interest in Newsstand. We source the best reading materials for smart people like you.</h3>
-<h3>Please select your subscription model:</h3>
+<h3>Please select your subscription type:</h3>
 
 <form action="/show" method="POST">
 <%@subscription_levels.each do |subscription|%>
     <input type="checkbox" name=subscription></input><br></br>
     <%=current_user.subscription_ids << subscription%>
-    <%=current_user.subscription_ids.titles << title_ids%> 
 <%end%>
 <br> </br>
 <input type="submit" value="Confirm subscription">
 </form>
+<br>
+
+<h3>Learn more about each level:</h3><br>
 
 <h3><a href="/subscriptions/lite">LITE</a></h3>
 <p>Just the basic titles in news and entertainment. Five titles, $9.99/month</p><br>

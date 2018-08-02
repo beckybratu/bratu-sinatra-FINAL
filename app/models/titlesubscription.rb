@@ -1,4 +1,4 @@
-class TitleCategory < ActiveRecord::Base
+class TitleSubscription < ActiveRecord::Base
 
   belongs_to :title
   belongs_to :subscription
