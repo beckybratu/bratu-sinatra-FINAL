@@ -8,4 +8,4 @@ use Rack::MethodOverride
 run ApplicationController
 use TitlesController
 use SubscriptionsController
-use CategoriesController
+use UsersController

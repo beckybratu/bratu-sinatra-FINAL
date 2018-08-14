@@ -1,8 +1,5 @@
 class TitlesController < ApplicationController
 
-# TITLES = ["Vogue", "W", "Glamour", "Vanity Fair", "The New Yorker", "Wired", "GQ", "Conde Nast Traveler",
-# "Architectural Digest", "Allure", "Brides", "Golf Digest", "Bon Appetit", "Self", "Teen Vogue",
-# "Epicurious", "Pitchfork", "Ars Technica", "The New York Times", "The Washington Post", "USA Today"].freeze
 
 get '/titles' do
   if logged_in?
