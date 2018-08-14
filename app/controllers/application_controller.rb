@@ -35,6 +35,7 @@ class ApplicationController < Sinatra::Base
 
   get "/login" do
     if logged_in?
+       @user = User.find_by(name: params[:name])
        redirect to '/titles'
     else
       erb :login
@@ -42,9 +43,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/login" do
-    user = User.find_by(name: params[:name])
-    if user && user.authenticate(params[:password])
-  	   session[:user_id] = user.id
+    @user = User.find_by(name: params[:name])
+    if @user && @user.authenticate(params[:password])
+  	   session[:user_id] = @user.id
   	   redirect '/titles'
     else
       redirect '/login'

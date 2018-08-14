@@ -1,5 +1,5 @@
 <h1>Newsstand</h1>
-<h2>Welcome, <%= @user.name.capitalize %></h2>
+<h2>Welcome, <%= @user.name.capitalize! %></h2>
 <h3>BROWSE OUR TITLES! Here are all the available titles in our collection:</h3>
 
 <ul>
@@ -29,6 +29,6 @@
 
   <br></br>
 
-<h3><a href="/subscriptions/new">OR, to reap the benefits of membership, SUBSCRIBE! Select a Newsstand subscription level to start reading!</a></h3>
+<h3><a href="/subscriptions/new">OR pick another subscription level</a></h3>
 <br></br>
 <a href="/logout">Logout</a>

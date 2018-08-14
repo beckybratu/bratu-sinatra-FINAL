@@ -1,13 +1,13 @@
 <h1>Newsstand</h1>
-<h2>Welcome, <%= @user.name.capitalize %></h2>
-<h2>Titles currently in your subscription:</h2>
-
+<h2>Welcome, <%= @user.name.capitalize! %></h2>
+<h2>You chose the <%=@subscription%> subscription level.</h2>
+<h3>Here are your editor-curated picks:</h3>
 <ul>
-  <%@user.titles.each do |title|%>
-    <li><%=title%></li><br>
+  <%@titles.each do |title|%>
+    <li><%=title.name%></li><br>
   <%end%>
 </ul>
 <br></br>
 
-<h4><a href="/subscriptions/new">Upgrade to even more titles!</a></h4>
+<h4><a href="/titles">Check out all the available titles in our collection</a></h4>
 <h4><a href="/logout">Logout</a></h4>
