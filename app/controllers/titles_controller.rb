@@ -14,7 +14,6 @@ end
 # get '/titles/new' do
 #   if logged_in?
 #     @user = current_user
-#     @categories = Category.all
 #     erb :'/titles/new'
 #   else
 #     redirect to '/login'
