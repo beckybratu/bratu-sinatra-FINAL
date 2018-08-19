@@ -1,7 +1,9 @@
 <h1>Newsstand</h1>
 <h2>Welcome, <%=@user.name.capitalize! %></h2>
 <h3>Thank you for your interest in Newsstand. We source the best reading materials for smart people like you.</h3>
-<h3>Please select your subscription type:</h3>
+<br></br>
+<h3><a href="/titles">Feel free to browse our available titles!</a></h3><br>
+<h3>OR please select your subscription type:</h3>
 
 <form action="/show" method="POST">
 <%@subscription_levels.each do |subscription|%>
