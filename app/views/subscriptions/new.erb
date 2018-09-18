@@ -1,27 +1,27 @@
-<h1>Newsstand</h1>
-<h2>Welcome, <%=@user.name.capitalize! %></h2>
-<h3>Thank you for your interest in Newsstand. We source the best reading materials for smart people like you.</h3>
-<br></br>
-<h3><a href="/titles">Feel free to browse our available titles!</a></h3><br>
-<h3>OR please select your subscription type:</h3>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Newsstand</title>
+  </head>
+  <body>
+    <h2>Welcome, <%=@user.name.capitalize %>!</h2>
+    <h3>Thank you for your interest in Newsstand. We source the best reading materials for smart people like you.</h3>
+    </br>
+    <h3><a href="/titles">Feel free to browse our available titles!</a></h3><br>
+    <h3>OR please select the titles you wish to include in your new subscription:</h3>
 
-<form action="/show" method="POST">
-<%@subscription_levels.each do |subscription|%>
-    <input type="checkbox" name="level" value= <%=subscription%>><%=subscription%></input>
-<%end%>
-<br> </br>
-<input type="submit" value="Confirm subscription">
-</form>
-<br>
+    <form action="/show" method="POST">
+    <%@titles.each do |title|%>
+        <input type="checkbox" name="subscription[title_ids][]" value="<%=title.id%>"><%=title.name%></input></br>
+    <%end%>
+    </br>
+    <input type="submit" value="Confirm subscription">
+    </form>
+    <br></br>
 
-<h3>Learn more about each level:</h3><br>
+    <a href="/titles">See our available titles</a><br>
+    <a href="/logout">Logout</a>
 
-<h3>LITE</h3>
-<p>Just the basic titles in news and entertainment. Five titles, $9.99/month</p><br>
-<h3>EXTRA</h3>
-<p>Are you into yachts? Or perhaps cigars? Get the basics with a touch of flair. Twelve titles, $15.99/month</p><br>
-<h3>EVERYTHING</h3>
-<p>If you consider yourself to be the ultimate consumer of the zeitgeist, this is the deal for you. Unlimited titles, unlimited categories, only $19.99/month</p><br>
-
-<a href="/titles">See our available titles</a><br>
-<a href="/logout">Logout</a>
+  </body>
+</html>

@@ -14,7 +14,7 @@
 
  ## Instructions
 
- Users can sign up to access the Newsstand, where they can browse and read the titles available. Users can also choose to sign up for one of the three subscription levels available (lite, extra, and everything), which will give them access to a certain number of titles (five, 12, and unlimited, respectively) selected for them by an editor. 
+ Users can sign up to access the Newsstand, where they can browse and read the titles available. Users can also choose to sign up for one of the three subscription levels available (lite, extra, and everything), which will give them access to a certain number of titles selected for them by an editor. 
 
  ## Contributing
  Bug reports and pull requests are welcome on GitHub at https://github.com/beckybratu/bratu-sinatra-FINAL.

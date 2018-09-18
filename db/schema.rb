@@ -10,16 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_012716) do
+ActiveRecord::Schema.define(version: 2018_09_05_024255) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
-  end
-
-  create_table "title_subscriptions", force: :cascade do |t|
     t.integer "title_id"
-    t.integer "subscription_id"
   end
 
   create_table "titles", force: :cascade do |t|

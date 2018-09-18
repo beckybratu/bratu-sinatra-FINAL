@@ -1,6 +1,6 @@
 class Title < ActiveRecord::Base
 
-  has_many :subscriptions, through: :title_subscriptions
-  has_many :title_subscriptions
+  has_many :subscriptions
+  has_many :users, :through => :subscriptions
 
 end
