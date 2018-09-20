@@ -11,9 +11,9 @@
     <h3><a href="/titles">Feel free to browse our available titles!</a></h3><br>
     <h3>OR please select the titles you wish to include in your new subscription:</h3>
 
-    <form action="/show" method="POST">
+    <form action="/subscriptions" method="POST">
     <%@titles.each do |title|%>
-        <input type="checkbox" name="subscription[title_ids][]" value="<%=title.id%>"><%=title.name%></input></br>
+        <input type="checkbox" name="subscription[title_id][]" value="<%=title.id%>"><%=title.name%></input></br>
     <%end%>
     </br>
     <input type="submit" value="Confirm subscription">

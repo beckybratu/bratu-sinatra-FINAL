@@ -15,44 +15,38 @@ class SubscriptionsController < ApplicationController
   end
 
   post '/subscriptions' do
-    if params[:subscription] != ""
-       @subscription = Subscription.create(params[:subscription])
-       @subscription.save
-       redirect to "/subscriptions/#{@subscription.id}"
+    @subscription = Subscription.create(params[:subscription])
+    if !params["title"]["name"].empty?
+      @subscription.titles << Title.create(name: params["title"]["name"])
+      @subscription.save
+      redirect to "subscriptions/#{@subscription.id}"
     else
        redirect to "/subscriptions/new"
     end
   end
 
 
-
-
   get '/subscriptions/:id' do
     @user = current_user
-    @subscription = Subscription.find_by_id(params[:id])
+    @subscription = Subscription.find(params[:id])
     erb :'subscriptions/show'
   end
 
 
-  # get '/show' do
-  #   @user = current_user
-  #   @titles = Title.all
-  #   @subscription = current_user.subscription
-  #   erb :'users/show'
-  # end
-  #
-  # post '/show' do
-  #   @user = current_user
-  #   @subscription = params[:level]
-  #   if @subscription == "lite"
-  #     @titles = Title.all.sample(5)
-  #   elsif @subscription == "extra"
-  #     @titles = Title.all.sample(12)
-  #   else
-  #     @titles = Title.all
-  #   end
-  #   erb :'users/show'
-  # end
+  get '/subscriptions/:id/edit' do
+    @subscription = Subscription.find(params[:id])
+    erb :'/subscriptions/edit'
+  end
+
+
+  post '/subscriptions/:id' do
+    @subscription = Subscription.find(params[:id])
+    @subscription.update(params["subscription"])
+    if !params["title"]["name"].empty?
+      @subscription.titles << Title.create(name: params["title"]["name"])
+    end
+    redirect to "subscription/#{@subscription.id}"
+  end
 
 
 
