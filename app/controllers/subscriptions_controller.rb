@@ -15,14 +15,18 @@ class SubscriptionsController < ApplicationController
   end
 
   post '/subscriptions' do
-    @subscription = Subscription.create(params[:subscription])
-    if !params["title"]["name"].empty?
-      @subscription.titles << Title.create(name: params["title"]["name"])
-      @subscription.save
-      redirect to "subscriptions/#{@subscription.id}"
-    else
-       redirect to "/subscriptions/new"
-    end
+    # @subscription = Subscription.create(params[:subscription])
+    # if !params[:subscription].empty?
+    #   @subscription = params[:title_id]
+    #   redirect to "subscriptions/#{@subscription.id}"
+    # else
+    #    redirect to "/subscriptions/new"
+    # end
+    @user = current_user
+    @subscription = Subscription.create(params[:title_id])
+    @subscription << Title.find(params[:title_id])
+    @subscription.name = @user.name
+    redirect to("/subscriptions/#{@subscription.id}")
   end
 
 

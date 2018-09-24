@@ -1,6 +1,20 @@
-<h4>Titles:</h4>
-<ul>
-  <%@subscription.titles.each do |title|%>
-  <li><%=title.name%></li>
-  <%end%>
-</ul>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Newsstand</title>
+  </head>
+  <body>
+    <h2>Welcome, <%=@user.name.capitalize %>!</h2>
+    <h3>Here's what you are subscribed to:</h3>
+    </br>
+    <ul>
+      <li><b><%= @subscription.name %></b>: <%= @subscription.title_id %></li>
+    </ul>
+
+
+    <a href="/titles">See our available titles</a><br>
+    <a href="/logout">Logout</a>
+
+  </body>
+</html>
