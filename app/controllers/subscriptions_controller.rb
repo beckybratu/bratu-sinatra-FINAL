@@ -23,9 +23,8 @@ class SubscriptionsController < ApplicationController
     #    redirect to "/subscriptions/new"
     # end
     @user = current_user
-    @subscription = Subscription.create(params[:title_id])
-    @subscription << Title.find(params[:title_id])
-    @subscription.name = @user.name
+    @subscription = Subscription.create(params[:subscription])
+    @subscription.titles = params[:titles]
     redirect to("/subscriptions/#{@subscription.id}")
   end
 
