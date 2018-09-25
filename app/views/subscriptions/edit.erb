@@ -1,20 +1,32 @@
-<h1>Update your Newsstand subscription</h1>
+<h2>Hi, <%= @user.name.capitalize %>!</h2>
+
+<h1>Edit your Newsstand subscription</h1>
 
 <form action="/subscriptions/<%=@subscription.id%>" method="POST">
 
 
-  <input type="text" name="subscription[name]" id="subscription_name" value="<%=@subscription.name%>">
-
-  <label>Choose another title:</label>
+  <label><h2>Add more titles to your Newsstand:</h2></label></br>
+  <i>* Please note that you are already subscribed to the checked titles.</i>
 
   <br></br>
 
   <%Title.all.each do |title|%>
-    <input type="checkbox" name="subscription[title_ids][]" id="<%= title.id%>" value="<%=title.id%>" <%='checked' if @subscription.titles.include?(title) %>><%=title.name%></input>
+    <input type="checkbox" name="subscription[title_ids][]" value="<%=title.id%>"
+    <%='checked' if current_user.titles.include?(title) %>><%=title.name%></input></br>
   <%end%>
 
   <br></br>
 
-
   <input type="submit" value="Update subscription">
 </form>
+<br></br>
+
+<h2>Click here to remove ALL titles from your subscription.</h2></br>
+<form method="POST" action="/subscriptions/<%=@subscription.id%>/delete">
+ <input id="hidden" type="hidden" name="_method" value="delete">
+ <input type="submit" value="Delete subscription">
+</form>
+
+<br></br>
+<a href="/users/<%=current_user.id%>">Go back to your subscription</a></br>
+<a href="/logout">Logout</a>

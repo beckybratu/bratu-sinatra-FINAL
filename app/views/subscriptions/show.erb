@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Newsstand</title>
-  </head>
-  <body>
-    <h2>Welcome, <%=@user.name.capitalize %>!</h2>
-    <h3>Here's what you are subscribed to:</h3>
+
+    <h1>Hi, <%=@user.name.capitalize %>!</h1>
+    <h3>Sorry to see you go! Care to try again?</h3>
     </br>
     <ul>
-      <li><b><%= @subscription.name %></b>: <%= @subscription.title_id %></li>
+      <li><h2><a href="/titles">Browse our available titles</a></h2></br></li>
+      <li><h2><a href="/subscriptions/new">Create a new subscription</a></h2></br></li>
     </ul>
 
 
-    <a href="/titles">See our available titles</a><br>
-    <a href="/logout">Logout</a>
 
-  </body>
-</html>
+    <a href="/logout">Logout</a>

@@ -1,5 +1,5 @@
 <h1>Newsstand</h1>
-<h2>Welcome, <%= @user.name.capitalize! %></h2>
+<h2>Hi, <%= @user.name.capitalize! %></h2>
 <h3>BROWSE OUR TITLES! Here are all the available titles in our collection:</h3>
 
 <ul>
@@ -28,6 +28,5 @@
 
 
   <br></br>
-
-
+<a href="/users/<%=current_user.id%>">Your subscription</a></br>
 <a href="/logout">Logout</a>

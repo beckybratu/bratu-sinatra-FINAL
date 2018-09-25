@@ -1,5 +1,5 @@
-<h1>Newsstand</h1>
-<h2>Welcome, <%= current_user.name.capitalize! %></h2>
+<h1>Newsstand</h1>  
+<h2>Hi, <%= current_user.name.capitalize! %></h2>
 <h3>Here are your subscription picks:</h3>
 <ul>
   <%current_user.titles.each do |title|%>
@@ -7,6 +7,6 @@
   <%end%>
 </ul>
 <br></br>
-<h4><a href="/subscriptions/<%= current_user.id %>/edit">Add or delete titles from your subscription</a></h4> 
-<h4><a href="/titles">Check out all the available titles in our collection</a></h4>
+<h4><a href="/subscriptions/<%=current_user.id%>/edit">Add more titles or delete your subscription</a></h4>
+<h4><a href="/titles">Browse all the available titles in our collection</a></h4>
 <h4><a href="/logout">Logout</a></h4>

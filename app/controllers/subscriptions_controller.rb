@@ -8,6 +8,7 @@ class SubscriptionsController < ApplicationController
     if logged_in?
       @user = current_user
       @titles = Title.all
+      current_user.titles = []
       erb :'/subscriptions/new'
     else
       redirect to '/login'
@@ -15,14 +16,6 @@ class SubscriptionsController < ApplicationController
   end
 
   post '/subscriptions' do
-    # @subscription = Subscription.create(params[:subscription])
-    # if !params[:subscription].empty?
-    #   @subscription = params[:title_id]
-    #   redirect to "subscriptions/#{@subscription.id}"
-    # else
-    #    redirect to "/subscriptions/new"
-    # end
-
     params[:subscription][:title_ids].each do |title_id|
         if !current_user.title_ids.include?(title_id.to_i)
           current_user.titles << Title.find(title_id)
@@ -40,24 +33,35 @@ class SubscriptionsController < ApplicationController
 
 
   get '/subscriptions/:id/edit' do
+    @user = current_user
     @subscription = Subscription.find(params[:id])
     if @subscription.user_id = current_user.id
       erb :'/subscriptions/edit'
     else
-      redirect to '/index'
-    end     #do the same for delete
+      redirect to '/'
+    end
   end
 
 
   post '/subscriptions/:id' do
     @subscription = Subscription.find(params[:id])
-    @subscription.update(params["subscription"])
-    if !params["title"]["name"].empty?
-      @subscription.titles << Title.create(name: params["title"]["name"])
-    end
-    redirect to "subscription/#{@subscription.id}"
+    params[:subscription][:title_ids].each do |title_id|
+        if !current_user.title_ids.include?(title_id.to_i)
+          current_user.titles << Title.find(title_id)
+        end
+      end
+    redirect to "/users/#{current_user.id}"
   end
 
-
+  delete '/subscriptions/:id/delete' do
+    @subscription = Subscription.find(params[:id])
+    if @subscription.user_id = current_user.id
+      current_user.titles.delete
+      current_user.save
+      redirect to "/subscriptions/#{@subscription.id}"
+    else
+      redirect to '/'
+    end
+  end
 
 end
