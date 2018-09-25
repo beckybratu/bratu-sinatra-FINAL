@@ -22,10 +22,13 @@ class SubscriptionsController < ApplicationController
     # else
     #    redirect to "/subscriptions/new"
     # end
-    @user = current_user
-    @subscription = Subscription.create(params[:subscription])
-    @subscription.titles = params[:titles]
-    redirect to("/subscriptions/#{@subscription.id}")
+
+    params[:subscription][:title_ids].each do |title_id|
+        if !current_user.title_ids.include?(title_id.to_i)
+          current_user.titles << Title.find(title_id)
+        end
+      end
+    redirect to "/users/#{current_user.id}"
   end
 
 
@@ -38,7 +41,11 @@ class SubscriptionsController < ApplicationController
 
   get '/subscriptions/:id/edit' do
     @subscription = Subscription.find(params[:id])
-    erb :'/subscriptions/edit'
+    if @subscription.user_id = current_user.id
+      erb :'/subscriptions/edit'
+    else
+      redirect to '/index'
+    end     #do the same for delete
   end
 
 

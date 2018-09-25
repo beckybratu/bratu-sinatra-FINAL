@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "secret"
+    register Sinatra::Flash
   end
 
   get '/' do
@@ -28,6 +29,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id]= user.id
       redirect "/subscriptions/new"
     else
+      flash[:message] = "Signing up failed. Please try again! #{user.errors.full_messages.to_sentence}."
       redirect to '/signup'
     end
   end
@@ -35,7 +37,7 @@ class ApplicationController < Sinatra::Base
   get "/login" do
     if logged_in?
        @user = User.find_by(name: params[:name])
-       redirect to '/titles'
+       redirect to "/users/#{current_user.id}"
     else
       erb :login
     end
@@ -45,7 +47,7 @@ class ApplicationController < Sinatra::Base
     @user = User.find_by(name: params[:name])
     if @user && @user.authenticate(params[:password])
   	   session[:user_id] = @user.id
-       redirect to '/titles'
+       redirect to "/users/#{current_user.id}"
     else
       redirect '/login'
     end
@@ -72,6 +74,6 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    
+
 
 end

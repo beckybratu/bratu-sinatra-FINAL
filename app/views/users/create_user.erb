@@ -1,5 +1,8 @@
 <h1>Newsstand</h1>
 <h2>Sign Up</h2>
+<%if flash[:message]%>
+  <h3><%=flash[:message]%></h3>
+<%end%>
 <form action="/signup" method="POST">
   <input type="text" name="name" id="name" placeholder="Username:">
   <input type="text" name="email" id= "email" placeholder="Email:">

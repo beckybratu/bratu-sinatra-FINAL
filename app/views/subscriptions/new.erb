@@ -13,7 +13,7 @@
 
     <form action="/subscriptions" method="POST">
     <%@titles.each do |title|%>
-        <input type="checkbox" name="titles[]" value="<%=title.id%>"><%=title.name%></input></br>
+        <input type="checkbox" name="subscription[title_ids][]" value="<%=title.id%>"><%=title.name%></input></br>
     <%end%>
     </br>
     <input type="submit" value="Confirm subscription">
