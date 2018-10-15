@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'pry'
 
 class SubscriptionsController < ApplicationController
 
@@ -34,34 +35,40 @@ class SubscriptionsController < ApplicationController
 
   get '/subscriptions/:id/edit' do
     @user = current_user
-    @subscription = Subscription.find(params[:id])
-    if @subscription.user_id = current_user.id
+    # @subscription = Subscription.find(params[:id])
+    # binding.pry
+    #
+    # if @subscription.user_id == current_user.id
       erb :'/subscriptions/edit'
-    else
-      redirect to '/'
-    end
+    # else
+    #   redirect to '/'
+    # end
   end
 
 
   post '/subscriptions/:id' do
-    @subscription = Subscription.find(params[:id])
+    # @subscription = Subscription.find(params[:id])
     params[:subscription][:title_ids].each do |title_id|
         if !current_user.title_ids.include?(title_id.to_i)
           current_user.titles << Title.find(title_id)
+        # elsif
+        #   current_user.titles.find(title_id)
+        else
+          current_user.titles
         end
       end
     redirect to "/users/#{current_user.id}"
   end
 
   delete '/subscriptions/:id/delete' do
-    @subscription = Subscription.find(params[:id])
-    if @subscription.user_id = current_user.id
+    # @subscription = Subscription.find(params[:id])
+    # if @subscription.user_id == current_user.id
       current_user.titles.delete
       current_user.save
-      redirect to "/subscriptions/#{@subscription.id}"
-    else
-      redirect to '/'
-    end
+      redirect to "/subscriptions/#{current_user.id}"
+    # else
+    #   redirect to '/'
+    # end
   end
 
 end

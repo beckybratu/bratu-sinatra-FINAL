@@ -2,7 +2,7 @@
 
 <h1>Edit your Newsstand subscription</h1>
 
-<form action="/subscriptions/<%=@subscription.id%>" method="POST">
+<form action="/subscriptions/<%=current_user.id%>" method="POST">
 
 
   <label><h2>Add more titles to your Newsstand:</h2></label></br>
@@ -13,6 +13,7 @@
   <%Title.all.each do |title|%>
     <input type="checkbox" name="subscription[title_ids][]" value="<%=title.id%>"
     <%='checked' if current_user.titles.include?(title) %>><%=title.name%></input></br>
+
   <%end%>
 
   <br></br>
@@ -22,7 +23,7 @@
 <br></br>
 
 <h2>Click here to remove ALL titles from your subscription.</h2></br>
-<form method="POST" action="/subscriptions/<%=@subscription.id%>/delete">
+<form method="POST" action="/subscriptions/<%=current_user.id%>/delete">
  <input id="hidden" type="hidden" name="_method" value="delete">
  <input type="submit" value="Delete subscription">
 </form>
