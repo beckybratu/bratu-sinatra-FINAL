@@ -47,16 +47,8 @@ class SubscriptionsController < ApplicationController
 
 
   post '/subscriptions/:id' do
-    # @subscription = Subscription.find(params[:id])
-    params[:subscription][:title_ids].each do |title_id|
-        if !current_user.title_ids.include?(title_id.to_i)
-          current_user.titles << Title.find(title_id)
-        # elsif
-        #   current_user.titles.find(title_id)
-        else
-          current_user.titles
-        end
-      end
+    current_user.title_ids = params[:subscription][:title_ids]
+    current_user.titles
     redirect to "/users/#{current_user.id}"
   end
 
