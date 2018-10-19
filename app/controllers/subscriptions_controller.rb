@@ -48,7 +48,7 @@ class SubscriptionsController < ApplicationController
 
   post '/subscriptions/:id' do
     current_user.title_ids = params[:subscription][:title_ids]
-    current_user.titles
+    current_user.save
     redirect to "/users/#{current_user.id}"
   end
 
